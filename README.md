@@ -1,12 +1,18 @@
 #youtube-dl-ez
 
 In order for the program to work it needs these dependencies:
+
 ffmpeg.exe
+
 morgrify.exe
+
 yt_dlp.exe
+
 youtube_dl.exe
 
+
 Links to dependence downloads:
+
 https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-5.0.1-essentials_build.zip
 
 https://imagemagick.org/archive/binaries/ImageMagick-7.1.0-53-portable-Q16-x64.zip
