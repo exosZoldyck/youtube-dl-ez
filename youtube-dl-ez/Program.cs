@@ -60,7 +60,7 @@ namespace youtube_dl_ez
             p0.StartInfo.RedirectStandardOutput = true;
             p0.StartInfo.RedirectStandardError = true;
             string eOut = null;
-            p0.ErrorDataReceived += new DataReceivedEventHandler((sender, e) =>{ eOut += e.Data; });
+            p0.ErrorDataReceived += new DataReceivedEventHandler((sender, e) => { eOut += e.Data; });
             p0.Start();
             p0.BeginErrorReadLine();
             string stdout = p0.StandardOutput.ReadToEnd();
@@ -68,28 +68,26 @@ namespace youtube_dl_ez
 
 
             Console.Clear();
-            List<String> availableQ = new List<string>(); 
-            bool mod1 = false;
-            bool mod2 = false;
+            List<String> availableQ = new List<string>();
             Console.WriteLine("Select video quality: ");
             //if (stdout.Contains("701 mp4")) availableQ.Add("701"); // 4K
             //if (stdout.Contains("700 mp4")) availableQ.Add("700"); // 2K
-            if (stdout.Contains("299 mp4")) { mod1 = true; availableQ.Add("299"); } // 1080p60
-            if (stdout.Contains("298 mp4")) { mod2 = true; availableQ.Add("298"); } // 720p60
-            if (stdout.Contains("137 mp4") && !mod1) availableQ.Add("137"); // 1080p
-            if (stdout.Contains("136 mp4") && !mod2) availableQ.Add("136"); // 720p
-            if (stdout.Contains("135 mp4")) availableQ.Add("135"); // 480p
-            if (stdout.Contains("134 mp4")) availableQ.Add("134"); // 360p
-            if (stdout.Contains("133 mp4")) availableQ.Add("133"); // 240p
-            if (stdout.Contains("160 mp4")) availableQ.Add("160"); // 144p
+            if (stdout.Contains("299 mp4") || (stdout.Contains("299      mp4"))) availableQ.Add("299"); // 1080p60
+            else if (stdout.Contains("137 mp4") || (stdout.Contains("137      mp4"))) availableQ.Add("137"); // 1080p
+            if (stdout.Contains("298 mp4") || (stdout.Contains("298      mp4"))) availableQ.Add("298"); // 720p60
+            else if (stdout.Contains("136 mp4") || (stdout.Contains("136      mp4"))) availableQ.Add("136"); // 720p
+            if (stdout.Contains("135 mp4") || (stdout.Contains("135      mp4"))) availableQ.Add("135"); // 480p
+            if (stdout.Contains("134 mp4") || (stdout.Contains("134      mp4"))) availableQ.Add("134"); // 360p
+            if (stdout.Contains("133 mp4") || (stdout.Contains("133      mp4"))) availableQ.Add("133"); // 240p
+            if (stdout.Contains("160 mp4") || (stdout.Contains("160      mp4"))) availableQ.Add("160"); // 144p
             if (availableQ.Count == 0)
             {
                 Console.WriteLine("ERROR: Video unavailable!!!");
                 Console.ReadKey();
                 return;
-            } 
+            }
 
-            int currentQCounter = 0; 
+            int currentQCounter = 0;
             foreach (String Q in availableQ)
             {
                 switch (Q)
@@ -282,7 +280,7 @@ namespace youtube_dl_ez
                 p4.Start();
                 p4.WaitForExit();
             }
-            else 
+            else
             {
                 Console.Write("\n\n");
                 Console.ForegroundColor = ConsoleColor.Yellow;
